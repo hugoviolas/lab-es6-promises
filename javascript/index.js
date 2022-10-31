@@ -53,19 +53,9 @@ getInstruction("mashedPotatoes", 0, (step0) => {
                 document.querySelector(
                   "#mashedPotatoes"
                 ).innerHTML += `<li>${step4}</li>`;
-                getInstruction(
-                  "Mashed potatoes are ready!",
-                  5,
-                  () => {
-                    instruction = "Mashed potatoes are ready!";
-                    document.querySelector(
-                      "#mashedPotatoes"
-                    ).innerHTML += `<li>${instruction}</li>`;
-                  },
-                  (err) => {
-                    console.log(err);
-                  }
-                );
+                document.querySelector(
+                  "#mashedPotatoes"
+                ).innerHTML += `<li>Ready</li>`;
                 const img = document.querySelector("#mashedPotatoesImg");
                 img.toggleAttribute("hidden");
               }),
@@ -136,23 +126,39 @@ obtainInstruction("steak", 0)
 async function makeBroccoli() {
   const img = document.querySelector("#broccoliImg");
   try {
-    const step0 = await obtainInstruction("broccoli", 0);
-    document.querySelector("#broccoli").innerHTML += `<li>${step0}</li>`;
-    const step1 = await obtainInstruction("broccoli", 1);
-    document.querySelector("#broccoli").innerHTML += `<li>${step1}</li>`;
-    const step2 = await obtainInstruction("broccoli", 2);
-    document.querySelector("#broccoli").innerHTML += `<li>${step2}</li>`;
-    const step3 = await obtainInstruction("broccoli", 3);
-    document.querySelector("#broccoli").innerHTML += `<li>${step3}</li>`;
-    const step4 = await obtainInstruction("broccoli", 4);
-    document.querySelector("#broccoli").innerHTML += `<li>${step4}</li>`;
-    const step5 = await obtainInstruction("broccoli", 5);
-    document.querySelector("#broccoli").innerHTML += `<li>${step5}</li>`;
-    const step6 = await obtainInstruction("broccoli", 6);
-    document.querySelector("#broccoli").innerHTML += `<li>${step6}</li>`;
+    // !!!! Not working well !!!!
+    // broccoli.forEach(async (element, i) => {
+    //   const step = await obtainInstruction("broccoli", i);
+    //   document.querySelector("#broccoli").innerHTML += `<li>${step}</li>`;
+    // });
+    // !!! Working but repetitive !!!!
+    // const step0 = await obtainInstruction("broccoli", 0);
+    // document.querySelector("#broccoli").innerHTML += `<li>${step0}</li>`;
+    // const step1 = await obtainInstruction("broccoli", 1);
+    // document.querySelector("#broccoli").innerHTML += `<li>${step1}</li>`;
+    // const step2 = await obtainInstruction("broccoli", 2);
+    // document.querySelector("#broccoli").innerHTML += `<li>${step2}</li>`;
+    // const step3 = await obtainInstruction("broccoli", 3);
+    // document.querySelector("#broccoli").innerHTML += `<li>${step3}</li>`;
+    // const step4 = await obtainInstruction("broccoli", 4);
+    // document.querySelector("#broccoli").innerHTML += `<li>${step4}</li>`;
+    // const step5 = await obtainInstruction("broccoli", 5);
+    // document.querySelector("#broccoli").innerHTML += `<li>${step5}</li>`;
+    // const step6 = await obtainInstruction("broccoli", 6);
+    // document.querySelector("#broccoli").innerHTML += `<li>${step6}</li>`;
+    // document.querySelector(
+    //   "#broccoli"
+    // ).innerHTML += `<li>"Broccoli is ready!</li>`;
+    // img.toggleAttribute("hidden");
+
+    // !!!! Working well !!!!
+    for (let i = 0; i < broccoli.length; i++) {
+      const step = await obtainInstruction("broccoli", i);
+      document.querySelector("#broccoli").innerHTML += `<li>${step}</li>`;
+    }
     document.querySelector(
       "#broccoli"
-    ).innerHTML += `<li>"Broccoli is ready!</li>`;
+    ).innerHTML += `<li>Broccoli is ready!</li>`;
     img.toggleAttribute("hidden");
   } catch (error) {
     console.error(error);
